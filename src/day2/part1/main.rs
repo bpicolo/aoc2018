@@ -1,18 +1,10 @@
-use structopt::StructOpt;
+use aoc::ProblemHarness;
 
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use std::path::PathBuf;
 
 static AOC_PROBLEM: &'static str = "2.1";
-
-#[derive(StructOpt)]
-#[structopt(raw(setting = "structopt::clap::AppSettings::ColoredHelp"))]
-struct Cli {
-    #[structopt(parse(from_os_str))]
-    input: PathBuf,
-}
 
 fn contains_n_of_any_letter(word: String, n: i32) -> bool {
     word.chars()
@@ -48,12 +40,5 @@ fn solve(reader: BufReader<File>) -> Option<i32> {
 }
 
 fn main() {
-    let args = Cli::from_args();
-    let reader = BufReader::new(File::open(&args.input).expect("input file not found"));
-
-    println!("-----Part: {}------", AOC_PROBLEM);
-    match solve(reader) {
-        Some(solution) => println!("Solution: {}", solution),
-        None => println!("Failed to find a solution. 🤨"),
-    }
+    ProblemHarness::new(AOC_PROBLEM, &solve).solve()
 }

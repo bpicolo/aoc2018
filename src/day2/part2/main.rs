@@ -1,17 +1,9 @@
-use structopt::StructOpt;
+use aoc::ProblemHarness;
 
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use std::path::PathBuf;
 
 static AOC_PROBLEM: &'static str = "2.2";
-
-#[derive(StructOpt)]
-#[structopt(raw(setting = "structopt::clap::AppSettings::ColoredHelp"))]
-struct Cli {
-    #[structopt(parse(from_os_str))]
-    input: PathBuf,
-}
 
 fn differ_by_single_char(a: &String, b: &String) -> bool {
     if a.len() != b.len() {
@@ -54,12 +46,5 @@ fn solve(reader: BufReader<File>) -> Option<String> {
 }
 
 fn main() {
-    let args = Cli::from_args();
-    let reader = BufReader::new(File::open(&args.input).expect("input file not found"));
-
-    println!("-----Part: {}------", AOC_PROBLEM);
-    match solve(reader) {
-        Some(solution) => println!("Solution: {}", solution),
-        None => println!("Failed to find a solution. 🤨"),
-    }
+    ProblemHarness::new(AOC_PROBLEM, &solve).solve()
 }
