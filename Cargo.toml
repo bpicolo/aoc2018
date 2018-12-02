@@ -5,13 +5,20 @@ authors = ["Ben Picolo <be.picolo@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-
-
-[[bin]]
-name = "day1"
-path = "src/day1/main.rs"
-
+structopt = { version = "0.2", default-features = false }
 
 [[bin]]
-name = "day2"
-path = "src/day2/main.rs"
+name = "day1-1"
+path = "src/day1/part1/main.rs"
+
+[[bin]]
+name = "day1-2"
+path = "src/day1/part2/main.rs"
+
+[[bin]]
+name = "day2-1"
+path = "src/day2/part1/main.rs"
+
+[[bin]]
+name = "day2-2"
+path = "src/day2/part2/main.rs"
