@@ -27,7 +27,7 @@ fn solve(reader: BufReader<File>) -> Option<String> {
     // trie-building algorithm to check as we go, but let's brute force for now ;)
     let words: Vec<String> = reader.lines().map(|x| x.unwrap()).collect();
 
-    for i in 0..words.len() {
+    for i in 0..words.len() - 1 {
         for j in i..words.len() {
             if differ_by_single_char(&words[i], &words[j]) {
                 let common: String = words[i]
