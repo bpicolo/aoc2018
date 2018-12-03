@@ -7,15 +7,13 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "3.1";
 
-fn solve(reader: BufReader<File>) -> Option<usize> {
+fn solve(reader: BufReader<File>) -> Option<i32> {
     let mut intersecting = HashSet::new();
     let mut claims: Vec<FabricClaim> = reader
         .lines()
         .map(|c| FabricClaim::from_serialized(c.unwrap()))
         .collect();
 
-    // Simple sweep-and-prune style collision detection. We sort
-    // these
     claims.sort_by(|a, b| (a.left).cmp(&b.left));
 
     for i in 0..claims.len() {
@@ -23,24 +21,24 @@ fn solve(reader: BufReader<File>) -> Option<usize> {
 
         for j in i + 1..claims.len() {
             let cmp_to_claim = &claims[j];
-
-            // Reached end of candidate collision boxes
             if claim.right() <= cmp_to_claim.left {
                 break;
             }
 
-            match claim.intersecting_points(&cmp_to_claim) {
-                Some(points) => {
-                    for point in points {
-                        intersecting.insert(point);
-                    }
-                }
-                None => (),
+            if claim.intersects(&cmp_to_claim) {
+                intersecting.insert(claim.id);
+                intersecting.insert(cmp_to_claim.id);
             }
         }
     }
 
-    Some(intersecting.len())
+    for i in 0..claims.len() {
+        if !intersecting.contains(&claims[i].id) {
+            return Some(claims[i].id);
+        }
+    }
+
+    None
 }
 
 fn main() {
