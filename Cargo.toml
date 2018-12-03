@@ -6,6 +6,8 @@ edition = "2018"
 
 [dependencies]
 structopt = { version = "0.2", default-features = false }
+regex = "1"
+lazy_static = "1.2.0"
 
 [[bin]]
 name = "day1-1"
@@ -22,3 +24,7 @@ path = "src/day2/part1/main.rs"
 [[bin]]
 name = "day2-2"
 path = "src/day2/part2/main.rs"
+
+[[bin]]
+name = "day3-1"
+path = "src/day3/part1/main.rs"
