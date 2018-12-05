@@ -8,6 +8,7 @@ edition = "2018"
 structopt = { version = "0.2", default-features = false }
 regex = "1"
 lazy_static = "1.2.0"
+chrono = "0.4"
 
 [[bin]]
 name = "day1-1"
@@ -32,3 +33,11 @@ path = "src/day3/part1/main.rs"
 [[bin]]
 name = "day3-2"
 path = "src/day3/part2/main.rs"
+
+[[bin]]
+name = "day4-1"
+path = "src/day4/part1/main.rs"
+
+[[bin]]
+name = "day4-2"
+path = "src/day4/part2/main.rs"
