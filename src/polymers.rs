@@ -23,7 +23,7 @@ fn is_ignored_polymer(p: u8, ignore: Option<u8>) -> bool {
     }
 }
 
-// `ignore` is only relevsant for part 2
+// `ignore` is only relevant for part 2
 pub fn solve_inner(s: &[u8], left: usize, right: usize, ignore: Option<u8>) -> VecDeque<u8> {
     if left == right {
         let mut l = VecDeque::new();
