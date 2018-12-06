@@ -22,7 +22,7 @@ fn differ_by_single_char(a: &String, b: &String) -> bool {
     ) == 1
 }
 
-fn solve(reader: BufReader<File>) -> Option<String> {
+fn solve(reader: &mut BufReader<File>) -> Option<String> {
     // It feels like we could do something interesting here with a sort of modified
     // trie-building algorithm to check as we go, but let's brute force for now ;)
     let words: Vec<String> = reader.lines().map(|x| x.unwrap()).collect();

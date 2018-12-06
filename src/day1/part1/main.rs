@@ -5,7 +5,7 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "1.1";
 
-fn solve(reader: BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Option<i32> {
     Some(
         reader
             .lines()

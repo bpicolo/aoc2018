@@ -6,7 +6,7 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "1.2";
 
-fn solve(reader: BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Option<i32> {
     let mut seen = HashSet::new();
     let lines: Vec<_> = reader.lines().map(|line| line.unwrap()).collect();
 

@@ -98,7 +98,7 @@ fn find_most_slept_minute(spans: &Vec<SleepSpan>) -> i32 {
     *most_sleepy_minute as i32
 }
 
-fn solve(reader: BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Option<i32> {
     let mut records: Vec<_> = reader
         .lines()
         .map(|c| LogRecord::deserialize(c.unwrap().as_str()))

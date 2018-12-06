@@ -7,7 +7,7 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "3.1";
 
-fn solve(reader: BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Option<i32> {
     let mut intersecting = HashSet::new();
     let mut claims: Vec<FabricClaim> = reader
         .lines()
