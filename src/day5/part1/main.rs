@@ -6,13 +6,13 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "5.1";
 
-fn solve(reader: &mut BufReader<File>) -> Option<usize> {
+fn solve(reader: &mut BufReader<File>) -> Result<usize, String> {
     let mut buf = vec![];
     let _ = reader.read_until(b'\n', &mut buf);
     let slice = buf.as_slice();
 
     // -2 as read_until includes the final newline byte, which we should ignore
-    Some(solve_inner(slice, 0, slice.len() - 2, None).len())
+    Ok(solve_inner(slice, 0, slice.len() - 2, None).len())
 }
 
 fn main() {

@@ -98,7 +98,7 @@ fn find_most_slept_minute(spans: &Vec<SleepSpan>) -> i32 {
     *most_sleepy_minute as i32
 }
 
-fn solve(reader: &mut BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Result<i32, String> {
     let mut records: Vec<_> = reader
         .lines()
         .map(|c| LogRecord::deserialize(c.unwrap().as_str()))
@@ -145,7 +145,7 @@ fn solve(reader: &mut BufReader<File>) -> Option<i32> {
     let most_slept =
         find_most_slept_minute(sleeping_spans_by_guard.get(&sleepiest_guard_id).unwrap());
 
-    Some(most_slept * sleepiest_guard_id)
+    Ok(most_slept * sleepiest_guard_id)
 }
 
 fn main() {

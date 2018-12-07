@@ -20,13 +20,13 @@ struct Cli {
 
 pub struct ProblemHarness<'a, T: Debug> {
     problem: &'static str,
-    solution: &'a Fn(&mut BufReader<File>) -> Option<T>,
+    solution: &'a Fn(&mut BufReader<File>) -> Result<T, String>,
 }
 
 impl<'a, T: Debug> ProblemHarness<'a, T> {
     pub fn new(
         problem: &'static str,
-        solution: &'a Fn(&mut BufReader<File>) -> Option<T>,
+        solution: &'a Fn(&mut BufReader<File>) -> Result<T, String>,
     ) -> ProblemHarness<'a, T> {
         ProblemHarness {
             problem: problem,
@@ -40,8 +40,8 @@ impl<'a, T: Debug> ProblemHarness<'a, T> {
 
         println!("-----Part: {}------", self.problem);
         match (self.solution)(&mut reader) {
-            Some(out) => println!("Solution: {:?}", out),
-            None => println!("Failed to find a solution. 🤨"),
+            Ok(out) => println!("Solution: {:?}", out),
+            Err(e) => println!("Failed to find a solution: {}", e),
         }
     }
 }

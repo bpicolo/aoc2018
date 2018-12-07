@@ -8,6 +8,25 @@ pub struct Point {
     pub y: i32,
 }
 
+impl Point {
+    pub fn manhattan_distance_to(&self, other: &Point) -> i32 {
+        (self.x - other.x).abs() + (self.y - other.y).abs()
+    }
+
+    pub fn is_on_boundary(&self, bounding_box: &BoundingBox) -> bool {
+        self.x == bounding_box.top_left.x
+            || self.x == bounding_box.bottom_right.x
+            || self.y == bounding_box.top_left.y
+            || self.y == bounding_box.bottom_right.y
+    }
+}
+
+#[derive(Hash, PartialEq, Eq, Debug)]
+pub struct BoundingBox {
+    pub top_left: Point,
+    pub bottom_right: Point,
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct FabricClaim {
     pub id: i32,

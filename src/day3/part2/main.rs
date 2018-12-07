@@ -7,7 +7,7 @@ use std::io::{BufRead, BufReader};
 
 static AOC_PROBLEM: &'static str = "3.1";
 
-fn solve(reader: &mut BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Result<i32, String> {
     let mut intersecting = HashSet::new();
     let mut claims: Vec<FabricClaim> = reader
         .lines()
@@ -34,11 +34,11 @@ fn solve(reader: &mut BufReader<File>) -> Option<i32> {
 
     for i in 0..claims.len() {
         if !intersecting.contains(&claims[i].id) {
-            return Some(claims[i].id);
+            return Ok(claims[i].id);
         }
     }
 
-    None
+    Err(String::from("Failed to find solution"))
 }
 
 fn main() {

@@ -17,7 +17,7 @@ fn contains_n_of_any_letter(word: &str, n: i32) -> bool {
         .any(|f| *f == n)
 }
 
-fn solve(reader: &mut BufReader<File>) -> Option<i32> {
+fn solve(reader: &mut BufReader<File>) -> Result<i32, String> {
     let mut exactly_two_count = 0;
     let mut exactly_three_count = 0;
 
@@ -35,7 +35,7 @@ fn solve(reader: &mut BufReader<File>) -> Option<i32> {
         }
     }
 
-    Some(exactly_three_count * exactly_two_count)
+    Ok(exactly_three_count * exactly_two_count)
 }
 
 fn main() {
